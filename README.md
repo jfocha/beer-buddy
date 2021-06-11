@@ -1,1 +1,1 @@
-# beer-buddy
+# movie-buddy
