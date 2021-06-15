@@ -66,12 +66,12 @@ fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca
 //  });
 
 var makeCardEl = function (tm, ob) {
-	for (let i = 0; i < 4; i++) {
+	for (let i = 0; i < 6; i++) {
 
 
 
 		var cardEl = document.createElement("div");
-		cardEl.classList.add("col", "s12", "m3");
+		cardEl.classList.add("col", "s12", "m2");
 
 		var cardContainerEl = document.createElement("div")
 		cardContainerEl.setAttribute("class", "card");
@@ -90,7 +90,7 @@ var makeCardEl = function (tm, ob) {
 
 		var cardActionEl = document.createElement("div");
 		cardActionEl.setAttribute("class", "card-action");
-		cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/" + tm.results[i].id + "-" + tm.results[i].title + "' target='_blank'>" + tm.results[i].title + "</a>");	// "<a href='" + + "'>" +  + "</a>"
+		cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/" + tm.results[i].id + "-" + tm.results[i].title + "' target='_blank'>" + tm.results[i].title + "</a>");
 		cardContainerEl.appendChild(cardActionEl);
 
 		newReleasesEl.append(cardEl);
