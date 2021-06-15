@@ -1,4 +1,4 @@
-newReleasesEl = document.querySelector("#new-releases");
+pageEl = document.querySelector("#page");
 
 // fetch movie info from omdb
 fetch("http://www.omdbapi.com/?i=tt3896198&apikey=68149114")
@@ -66,10 +66,8 @@ fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca
 //  });
 
 var makeCardEl = function (tm, ob) {
+	pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 	for (let i = 0; i < 6; i++) {
-
-
-
 		var cardEl = document.createElement("div");
 		cardEl.classList.add("col", "s12", "m2");
 
@@ -93,6 +91,17 @@ var makeCardEl = function (tm, ob) {
 		cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/" + tm.results[i].id + "-" + tm.results[i].title + "' target='_blank'>" + tm.results[i].title + "</a>");
 		cardContainerEl.appendChild(cardActionEl);
 
-		newReleasesEl.append(cardEl);
+		pageEl.append(cardEl);
 	}
+}
+
+var searchMovie = function (tm, ob) {
+	// when submit button is entered, clear the page and display the searched movie.
+	// get show times
+	// ask to add to favorites
+}
+
+var favorites = function () {
+	// add drag and drop cards
+	// add search function => makes cards
 }
