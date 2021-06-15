@@ -27,8 +27,9 @@ body {
   background-size: cover;
 }
 
-h2 .title {
+.title {
   font-family: 'Montserrat', sans-serif;
+  color: var(--grey-lighten-2);
 }
 
 /* body { */
