@@ -1,28 +1,51 @@
 :root {
-    --primary-screen: #c5c1c0;
-    --secondary-steel: #0a1612;
-    --tertiary-denim: #1a2930;
-    --accent-marigold: #f7ce3e;
-    --accSecondary-white: #f1f1f1;
+    --grey-lighten-2: #e0e0e0;
+    --grey-darken-4: #212121;
+    --indigo-darken-4: #1a237e;
+    --yellow-darken-3: #f9a825;
+    --grey-lighten-5: #fafafa;
   }
 
-  @import url(https://fonts.googleapis.com/css?family=Lobster);
-@import url(https://fonts.googleapis.com/css?family=Lato);
-body {
-  background: url(https://static.pexels.com/photos/1043/red-building-industry-bricks-large.jpg) no-repeat;
-  background-size: cover;
-  color: #FFF;
-  font-family: 'Lato';
+
+/* font-family: 'Josefin Sans', sans-serif;  wght@600
+font-family: 'Limelight', cursive;
+font-family: 'Montserrat', sans-serif;   ital,wght@1,300
+font-family: 'Roboto', sans-serif; */
+
+.nav-wrapper {
+background-color: var(--grey-darken-4);
+font-family: 'Limelight', cursive;
 }
-.img-responsive {
+
+.nav-wrapper a {
+color: var(--grey-lighten-2);
+
+}
+
+body {
+  background: url(../images/CINEMA_SEATS.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+
+h2 .title {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* body { */
+  /* background: url(https://static.pexels.com/photos/1043/red-building-industry-bricks-large.jpg) no-repeat; */
+  /* background-size: cover; */
+  /* color: #FFF;
+  font-family: 'Lato'; */
+/* } */
+/* .img-responsive {
   width: 90vw;
   max-width:500px;
 }
 h1 {
-  font-family: 'Lobster';
+
   font-size: 6rem;
-  color: black;
-  transform: rotate(-10deg);
+  color: var(--secondary-steel);
+  
 }
 .alert {
   margin-top: 10px;
@@ -64,11 +87,11 @@ input[type=text] {
 }
 :-moz-placeholder {
   /* Firefox 18- */
-  color: black;
+  /* color: black;
 }
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: black;
+  /* color: black;
 }
 :-ms-input-placeholder {
   color: black;
@@ -88,4 +111,4 @@ input:focus {
   display: inline;
   padding: 10px;
   color: white;
-}
+} */ 

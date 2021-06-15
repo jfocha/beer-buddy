@@ -13,7 +13,10 @@ fetch("http://www.omdbapi.com/?i=tt3896198&apikey=68149114")
 fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb")
 .then(response => {
 	return response.json();
-}).then(data=>{console.log(data)})
+}).then(data=>{
+	console.log(data);
+	console.log("here");
+})
 .catch(err => {
 	console.error(err);
 });
@@ -25,6 +28,10 @@ $('#term').focus(function(){
 	}
  });
 
+var displayNewReleases = function () {
+	
+}
+
  var getPoster = function(){
 	  var film = $('#term').val();
 	   if(film == ''){
@@ -34,7 +41,7 @@ $('#term').focus(function(){
 		  $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function(json) {
 			 if (json != "Nothing found."){                 
 console.log(json);
-				   $('#poster').html('<p>Your search found: <strong>' + json.results[0].title + '</strong></p><img src=\"http://image.tmdb.org/t/p/w500/' + json.results[0].poster_path + '\" class=\"img-responsive\" >');
+				   $('#poster').html('<p>Your search found: <strong>' + json.results[0].title + '</strong></p><img src=\"http://image.tmdb.org/t/p/w300/' + json.results[0].poster_path + '\" class=\"img-responsive\" >');
 				} else {
 				   $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=goonies&callback=?", function(json) {
 					 console.log(json);
