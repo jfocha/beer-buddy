@@ -25,7 +25,7 @@ var makeCardEl = function () {
 	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 	// for (let i = 0; i < 6; i++) {
 		var cardEl = document.createElement("div");
-		cardEl.classList.add("col", "s6", "s3");
+		cardEl.classList.add("col", "s4");
 
 		var cardContainerEl = document.createElement("div")
 		cardContainerEl.setAttribute("class", "card horizontal");
@@ -50,4 +50,58 @@ var makeCardEl = function () {
 		update.append(cardEl);
 	// }
 }
- makeCardEl();
+
+// enable draggable/sortable feature on list-group elements
+$(".card .list-group").sortable({
+	// enable dragging across lists
+	connectWith: $(".card .list-group"),
+	scroll: false,
+	tolerance: "pointer",
+	helper: "clone",
+	activate: function(event, ui) {
+	  $(this).addClass("dropover");
+	  $(".bottom-trash").addClass("bottom-trash-drag");
+	},
+	deactivate: function(event, ui) {
+	  $(this).removeClass("dropover");
+	  $(".bottom-trash").removeClass("bottom-trash-drag");
+	},
+	over: function(event) {
+	  $(event.target).addClass("dropover-active");
+	},
+	out: function(event) {
+	  $(event.target).removeClass("dropover-active");
+	},
+	update: function() {
+	  var tempArr = [];
+  
+	  // loop over current set of children in sortable list
+	  $(this)
+		.children()
+		.each(function() {
+		  // save values in temp array
+		  tempArr.push({
+			text: $(this)
+			  .find("p")
+			  .text()
+			  .trim(),
+			date: $(this)
+			  .find("span")
+			  .text()
+			  .trim()
+		  });
+		});
+  
+	  // trim down list's ID to match object property
+	  var arrName = $(this)
+		.attr("id")
+		.replace("list-", "");
+  
+	  // update array on tasks object and save
+	  tasks[arrName] = tempArr;
+	  saveTasks();
+	}
+  });
+
+
+makeCardEl();
