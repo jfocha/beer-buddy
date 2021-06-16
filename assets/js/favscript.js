@@ -25,7 +25,7 @@ var makeCardEl = function () {
 	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 	// for (let i = 0; i < 6; i++) {
 		var cardEl = document.createElement("div");
-		cardEl.classList.add("col", "s6", "s3");
+		cardEl.classList.add("col", "s6");
 
 		var cardContainerEl = document.createElement("div")
 		cardContainerEl.setAttribute("class", "card horizontal");
