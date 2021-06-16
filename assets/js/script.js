@@ -108,9 +108,9 @@ var searchMovie = function (tm, ob) {
 	// pageEl = "";
 }
 
-var pageEl=("");
+// var pageEl=("");
 // add drag and drop cards
 	// add search function => makes cards
-var favorites = function ()
+var favorites = function () {
 	
 };
