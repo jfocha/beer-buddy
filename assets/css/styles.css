@@ -31,6 +31,16 @@ body {
   font-family: 'Montserrat', sans-serif;
   color: var(--grey-lighten-2);
 }
+/* .card-horizontal {
+  max-height: 100px;
+  display: inline-block;
+}
+.card .card-content {
+  padding: 15px 25px !important;
+}
+.card-action {
+padding: 5px 25px !important;
+} */
 
 /* body { */
   /* background: url(https://static.pexels.com/photos/1043/red-building-industry-bricks-large.jpg) no-repeat; */
