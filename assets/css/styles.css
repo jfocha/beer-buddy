@@ -1,0 +1,114 @@
+:root {
+    --grey-lighten-2: #e0e0e0;
+    --grey-darken-4: #212121;
+    --indigo-darken-4: #1a237e;
+    --yellow-darken-3: #f9a825;
+    --grey-lighten-5: #fafafa;
+  }
+
+
+/* font-family: 'Josefin Sans', sans-serif;  wght@600
+font-family: 'Limelight', cursive;
+font-family: 'Montserrat', sans-serif;   ital,wght@1,300
+font-family: 'Roboto', sans-serif; */
+
+.nav-wrapper {
+background-color: var(--grey-darken-4);
+font-family: 'Limelight', cursive;
+}
+
+.nav-wrapper a {
+color: var(--grey-lighten-2);
+
+}
+
+body {
+  background: url(../image/CINEMA_SEATS.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--grey-lighten-2);
+}
+
+/* body { */
+  /* background: url(https://static.pexels.com/photos/1043/red-building-industry-bricks-large.jpg) no-repeat; */
+  /* background-size: cover; */
+  /* color: #FFF;
+  font-family: 'Lato'; */
+/* } */
+/* .img-responsive {
+  width: 90vw;
+  max-width:500px;
+}
+h1 {
+  font-size: 6rem;
+  color: var(--secondary-steel);
+  
+}
+.alert {
+  margin-top: 10px;
+}
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  min-height: 100vh;
+  overflow:hidden;
+}
+.search {
+  flex: 1;
+  text-align: center;
+}
+button {
+  background-color: black;
+  border: 0;
+  color: white;
+  font-size: 2em;
+  padding: 10px;
+  margin-left: 0;
+  font-family: 'Lobster';
+}
+input[type=text] {
+  background: rgba(255, 255, 255, 0.5);
+  outline: none;
+  border: 3px solid black;
+  color: black;
+  font-family: 'Lato';
+  font-size: 2em;
+  padding: 8px;
+  margin-right: 0;
+  text-align:center;
+}
+::-webkit-input-placeholder {
+  color: black;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  /* color: black;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  /* color: black;
+}
+:-ms-input-placeholder {
+  color: black;
+}
+#poster {
+  margin-top: 20px
+}
+#poster p {
+  font-size: 2em;
+  color: black;
+}
+input:focus {
+  outline: none;
+}
+.alert {
+  background-color: rgba(0, 0, 0, 0.95);
+  display: inline;
+  padding: 10px;
+  color: white;
+} */ 
