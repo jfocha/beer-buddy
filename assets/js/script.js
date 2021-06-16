@@ -1,12 +1,13 @@
 pageEl = document.querySelector("#page");
 
 // fetch movie info from omdb
-fetch("http://www.omdbapi.com/?i=tt3896198&apikey=68149114")
+fetch("https://www.omdbapi.com/?i=tt3896198&apikey=68149114")
 	.then(response => {
 		return response.json();
 	}).then(data => {
 		console.log(data);
 		console.log("here 1");
+		// myFunction (data);
 	})
 	.catch(err => {
 		console.error(err);
@@ -65,6 +66,11 @@ fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca
 // 	 }
 //  });
 
+// myFunction() {
+// 	var poltstuff = results.plot
+// 	return results
+// };
+
 var makeCardEl = function (tm, ob) {
 	pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 	for (let i = 0; i < 6; i++) {
@@ -99,6 +105,7 @@ var searchMovie = function (tm, ob) {
 	// when submit button is entered, clear the page and display the searched movie.
 	// get show times
 	// ask to add to favorites
+	// pageEl = "";
 }
 
 var pageEl=("");
