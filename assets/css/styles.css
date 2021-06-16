@@ -23,7 +23,7 @@ color: var(--grey-lighten-2);
 }
 
 body {
-  background: url(../image/CINEMA_SEATS.jpg) no-repeat center fixed;
+  background: url(../images/CINEMA_SEATS.jpg) no-repeat center fixed;
   background-size: cover;
 }
 

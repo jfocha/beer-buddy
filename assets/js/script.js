@@ -101,7 +101,9 @@ var searchMovie = function (tm, ob) {
 	// ask to add to favorites
 }
 
-var favorites = function () {
-	// add drag and drop cards
+var pageEl=("");
+// add drag and drop cards
 	// add search function => makes cards
-}
+var favorites = function ()
+	
+};
