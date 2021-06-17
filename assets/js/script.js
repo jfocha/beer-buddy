@@ -118,7 +118,7 @@ var favorites = function() {
 
 // search by popularity in descending order 
 const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&page=1';
-const IMG_PATH = 'https://image.tmdb.org/t/p/w300'
+const IMG_PATH = 'https://image.tmdb.org/t/p/w400'
 const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?&api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query="';
 
 
@@ -129,6 +129,7 @@ async function getMovies(url) {
     const data = await res.json();
 
     showMovies(data.results)
+    console.log(data.results)
 }
 
 function showMovies(movies) {
@@ -138,30 +139,61 @@ function showMovies(movies) {
         // destructuring 
         var { title, poster_path, overview } = movie;
 
-        var cardEl = document.createElement("div");
-        cardEl.classList.add("col", "s12", "m2");
 
-        var cardContainerEl = document.createElement('div');
-        cardContainerEl.className = 'card';
-        cardEl.appendChild(cardContainerEl)
+        var cardContainerEl = document.createElement("div");
+        cardContainerEl.classList.add("col", "s12", "m2");
 
-        var cardImageElContainer = document.createElement('div');
-        cardImageElContainer.className = "card-image";
-        cardContainerEl.appendChild(cardImageElContainer);
+        var cardEl = document.createElement('div');
+        cardEl.className = 'card';
+        cardContainerEl.appendChild(cardEl);
 
-        var cardImageEl = document.createElement('img');
-        cardImageEl.src = `${IMG_PATH+poster_path}`
-        cardImageElContainer.appendChild(cardImageEl);
+        var cardImageContainerEl = document.createElement('div');
+        cardImageContainerEl.className = 'card-image';
+        cardEl.appendChild(cardImageContainerEl);
 
-        var cardContentEl = document.createElement('div')
-        cardContentEl.className = 'card-content';
-        var paraEl = document.createElement('p');
-        paraEl.textContent = `${overview}`;
-        cardContentEl.appendChild(paraEl);
+        var imgEl = document.createElement('img');
+        imgEl.src = IMG_PATH + poster_path;
+        // var spanEl = document.createElement('span');
+        // spanEl.className = 'card-title';
+        // spanEl.textContent = title;
 
-        cardImageEl.appendChild(cardContentEl);
+        var cardContentEl = document.createElement('div');
+        cardContentEl.ClassName = "card-content";
+        cardContentEl.innerHTML = `<p>${overview}<p>`;
+        cardEl.appendChild(cardContentEl);
 
-        pageEl.appendChild(cardEl);
+
+        cardImageContainerEl.appendChild(imgEl);
+        // cardImageContainerEl.appendChild(spanEl);
+
+
+
+
+
+        // var cardContainerEl = document.createElement('div');
+        // cardContainerEl.className = 'card';
+        // cardEl.appendChild(cardContainerEl)
+
+        // var cardImageElContainer = document.createElement('div');
+        // cardImageElContainer.className = "card-image";
+        // cardContainerEl.appendChild(cardImageElContainer);
+
+        // var cardImageEl = document.createElement('img');
+        // cardImageEl.src = `
+        // $ { IMG_PATH + poster_path }
+        // `
+        // // cardImageElContainer.appendChild(cardImageEl);
+
+        // // var cardContentEl = document.createElement('div')
+        // // cardContentEl.className = 'card-content';
+        // // cardContentEl.innerHTML = ` < p > $ { overview } < /p>`
+        //     // var paraEl = document.createElement('p');
+        //     // paraEl.textContent = `${overview}`;
+        //     // cardContentEl.appendChild(paraEl);
+
+        // cardImageEl.appendChild(cardContentEl);
+
+        pageEl.appendChild(cardContainerEl);
 
     })
 
