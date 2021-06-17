@@ -16,12 +16,14 @@ fetch("https://www.omdbapi.com/?i=tt3896198&apikey=68149114")
 // fetch movie poster
 //console.log($.getJSON("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb"));
 
+// Google maps api key: AIzaSyB4dt1YA1uR7QHxQXmtJ154i3t_5WtXlgA
+
 fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb")
     .then(response => {
         return response.json();
     }).then(data => {
         console.log(data);
-        makeCardEl(data, true);
+        // makeCardEl(data, true);
 
     })
     .catch(err => {
@@ -118,10 +120,10 @@ var favorites = function() {
 
 // search by popularity in descending order 
 const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&page=1';
-const IMG_PATH = 'https://image.tmdb.org/t/p/w400'
+const IMG_PATH = 'https://image.tmdb.org/t/p/w200'
 const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?&api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query="';
 
-
+pageEl.innerHTML = "<h2 class='title'>New Releases</h2>";
 getMovies(API_URL);
 
 async function getMovies(url) {
@@ -133,7 +135,8 @@ async function getMovies(url) {
 }
 
 function showMovies(movies) {
-    pageEl.innerHTML = ''
+    // pageEl.innerHTML = ''
+	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 
     movies.forEach((movie) => {
         // destructuring 
@@ -148,7 +151,7 @@ function showMovies(movies) {
         cardContainerEl.appendChild(cardEl);
 
         var cardImageContainerEl = document.createElement('div');
-        cardImageContainerEl.className = 'card-image';
+        cardImageContainerEl.className = 'card-image vert';
         cardEl.appendChild(cardImageContainerEl);
 
         var imgEl = document.createElement('img');
@@ -158,15 +161,18 @@ function showMovies(movies) {
         // spanEl.textContent = title;
 
         var cardContentEl = document.createElement('div');
-        cardContentEl.ClassName = "card-content";
-        cardContentEl.innerHTML = `<p>${overview}<p>`;
+        cardContentEl.className = "card-content";
+        cardContentEl.innerHTML = `<p>${overview}`;
         cardEl.appendChild(cardContentEl);
 
 
         cardImageContainerEl.appendChild(imgEl);
         // cardImageContainerEl.appendChild(spanEl);
 
-
+        var cardActionEl = document.createElement("div");
+        cardActionEl.setAttribute("class", "card-action");
+        cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/" + title + "' target='_blank'>" + title + "</a>"); //need to search by movie id, not title
+        cardEl.appendChild(cardActionEl);
 
 
 
@@ -210,8 +216,11 @@ form.addEventListener("submit", (event) => {
     var searchTerm = search.value;
 
     if (searchTerm && searchTerm !== '') {
+		pageEl.innerHTML = ''
+		pageEl.innerHTML = "<h2 class='title'>Your Results:</h2>"
         getMovies(SEARCH_API + searchTerm);
         search.value = '';
+
     } else {
         window.location.reload();
     }

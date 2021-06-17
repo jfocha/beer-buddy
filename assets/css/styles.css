@@ -36,24 +36,64 @@ h5 {
   color: var(--grey-lighten-2);
 }
 
-/* a {
-  color: var(--yellow-darken-3);
+
+/* get full image */
+/* .card-image {
+  height: 100%;
+  overflow: hidden;
 } */
 
+/* .col {
+  display: flex;
+} */
+
+/* .col .card {
+  height: 100%;
+} */
+
+/* styling for the Favorites Page */
 .horizontal {
   background-color: var(--grey-darken-4);
 }
 
-.card-image img{
+.card-content {
+  height: 30vh;
+  overflow-y : scroll;
+}
+
+/* .card-action {
+  
+} */
+
+/* This controls the size of the poster image */
+.vert img{
   width: auto;
-  height: 200px;
+  height: 100%;
   object-fit:cover;
   }
 
+  /* This controls the droppable area. */
   ul.list-group {
-    min-height: 215px;
+    /* was 215px */
+    height: 350px;   
     background-color: var(--indigo-darken-4);
   }
+
+
+  /* styling for the map page */
+#map {
+  height: 80vh;
+  
+  /* position: absolute;
+  top: 200;
+  bottom: 200;
+  left: 200;
+  right: 200; */
+}
+
+#border {
+  padding: 50px 100px 0 100px;
+}
 
 /* .card-horizontal {
   max-height: 100px;

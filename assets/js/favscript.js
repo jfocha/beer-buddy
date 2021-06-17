@@ -47,7 +47,7 @@ var makeCardEl = function (movieData) {
 		cardContainerEl.appendChild(cardStacked);
 
 		var cardContentEl = document.createElement("div");
-		cardContentEl.setAttribute("class", "card-content");
+		cardContentEl.setAttribute("class", "card-contents"); //supposed to be card-content
 		cardContentEl.innerHTML = ("<h5>" + movieData.results[0].title + "</h5>");			// "<p>" +  + "</p>"
 		cardStacked.appendChild(cardContentEl);
 
@@ -65,6 +65,7 @@ document.getElementById("form").addEventListener("submit", myFunction);
 function myFunction(event) {
 	event.preventDefault();
 	var film = submitInput.value;
+	submitInput.value = '';
 
 
 	$.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function(json) {
