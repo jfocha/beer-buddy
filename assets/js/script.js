@@ -1,37 +1,3 @@
-// search by popularity in descending order 
-const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&page=1';
-const IMG_URL = 'https://image.imdb.org/t/p/w2180/'
-const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?&api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query="';
-
-
-getMovies(API_URL);
-
-async function getMovies(url) {
-    const res = await fetch(url);
-    const data = await res.json();
-
-    console.log(data.results)
-}
-
-
-var form = document.getElementById('form');
-var search = document.getElementById('search')
-
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    var searchTerm = search.value;
-
-    if (searchTerm && searchTerm !== '') {
-        getMovies(SEARCH_API + searchTerm);
-        search.value = '';
-    } else {
-        window.location.reload();
-    }
-})
-
-
-
 pageEl = document.querySelector("#page");
 
 // fetch movie info from omdb
@@ -148,3 +114,73 @@ var searchMovie = function(tm, ob) {
 var favorites = function() {
 
 };
+
+
+// search by popularity in descending order 
+const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&page=1';
+const IMG_PATH = 'https://image.tmdb.org/t/p/w300'
+const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?&api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query="';
+
+
+getMovies(API_URL);
+
+async function getMovies(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    showMovies(data.results)
+}
+
+function showMovies(movies) {
+    pageEl.innerHTML = ''
+
+    movies.forEach((movie) => {
+        // destructuring 
+        var { title, poster_path, overview } = movie;
+
+        var cardEl = document.createElement("div");
+        cardEl.classList.add("col", "s12", "m2");
+
+        var cardContainerEl = document.createElement('div');
+        cardContainerEl.className = 'card';
+        cardEl.appendChild(cardContainerEl)
+
+        var cardImageElContainer = document.createElement('div');
+        cardImageElContainer.className = "card-image";
+        cardContainerEl.appendChild(cardImageElContainer);
+
+        var cardImageEl = document.createElement('img');
+        cardImageEl.src = `${IMG_PATH+poster_path}`
+        cardImageElContainer.appendChild(cardImageEl);
+
+        var cardContentEl = document.createElement('div')
+        cardContentEl.className = 'card-content';
+        var paraEl = document.createElement('p');
+        paraEl.textContent = `${overview}`;
+        cardContentEl.appendChild(paraEl);
+
+        cardImageEl.appendChild(cardContentEl);
+
+        pageEl.appendChild(cardEl);
+
+    })
+
+}
+
+
+
+var form = document.getElementById('form');
+var search = document.getElementById('search')
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    var searchTerm = search.value;
+
+    if (searchTerm && searchTerm !== '') {
+        getMovies(SEARCH_API + searchTerm);
+        search.value = '';
+    } else {
+        window.location.reload();
+    }
+})
