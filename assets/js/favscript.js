@@ -15,6 +15,8 @@ function dragEnd() {
 }
 
 var update = document.querySelector("#list-toDo");
+var update = document.querySelector("#text");
+var submitInput = document.querySelector("#search")
 
 // fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb")
 // 	.then(response => {
@@ -27,19 +29,23 @@ var update = document.querySelector("#list-toDo");
 // 	.catch(err => {
 // 		console.error(err);
 // 	});
-var film ="annabelle";
-    $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function(json) {
-        			 if (json != "Nothing found."){                 
-        console.log(json);
-                     }
-                    });
+
+
+// var film ="annabelle";
+//     $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function(json) {
+//         			 if (json != "Nothing found."){                 
+//         console.log(json);
+//                      }
+//                     });
+
+
 // var cardEl = document.createElement("div");
 // update.append(cardEl)
-var makeCardEl = function () {
+var makeCardEl = function (image, title) {
 	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 	// for (let i = 0; i < 6; i++) {
 		var cardEl = document.createElement("div");
-		cardEl.classList.add("col", "s4");
+		cardEl.classList.add("col", "s3", "m4");
 
 		var cardContainerEl = document.createElement("div")
 		cardContainerEl.setAttribute("class", "card horizontal");
@@ -47,13 +53,17 @@ var makeCardEl = function () {
 
 		var cardImageEl = document.createElement("div");
 		cardImageEl.setAttribute("class", "card-image");
-		cardImageEl.innerHTML = "<img src='http://image.tmdb.org/t/p/w300/yLsuU2P2SpDYFwtZQ7dtfVAf6TE.jpg'></img>"; //"; // + tm.results[i].poster_path + "'></img>";
+		cardImageEl.innerHTML = "<img src='http://image.tmdb.org/t/p/w200" + image + "'></img>"; //"; // + tm.results[i].poster_path + "'></img>";
 		cardContainerEl.appendChild(cardImageEl);
 		// It's possible to add a title on the image. Use: <span class="card-title">Card Title</span> in the innerHTML after the img.
 
+		// var cardStacked = document.createElement("div");
+		// cardStacked.setAttribute("class", "card-stacked");
+		// cardContainerEl.appendChild(cardStacked);
+
 		var cardContentEl = document.createElement("div");
 		cardContentEl.setAttribute("class", "card-content");
-		cardContentEl.innerHTML = ("<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>");			// "<p>" +  + "</p>"
+		cardContentEl.innerHTML = ("<h6>" + title + "</h6>");			// "<p>" +  + "</p>"
 		cardContainerEl.appendChild(cardContentEl);
 
 		var cardActionEl = document.createElement("div");
@@ -63,6 +73,25 @@ var makeCardEl = function () {
 
 		update.append(cardEl);
 	// }
+}
+
+document.getElementById("form").addEventListener("submit", myFunction);
+
+function myFunction(event) {
+	event.preventDefault();
+	var film = submitInput.value;
+
+
+	$.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function(json) {
+		if (json != "Nothing found."){                 
+console.log(json);
+makeCardEl(json.results[0].poster_path, json.results[0].title)
+		}
+	   });
+
+	//makeCardEl(image, title)  // find image and title from fetch
+
+
 }
 
 // enable draggable/sortable feature on list-group elements
@@ -118,4 +147,4 @@ $(".card .list-group").sortable({
   });
 
 
-makeCardEl();
+
