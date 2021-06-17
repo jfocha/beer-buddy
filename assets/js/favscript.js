@@ -30,7 +30,7 @@ var makeCardEl = function (image, title) {
 	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 	// for (let i = 0; i < 6; i++) {
 		var cardEl = document.createElement("div");
-		cardEl.classList.add("col", "s3", "m4");
+		cardEl.classList.add("col", "s3", "m3");
 
 		var cardContainerEl = document.createElement("div")
 		cardContainerEl.setAttribute("class", "card horizontal");
@@ -42,19 +42,19 @@ var makeCardEl = function (image, title) {
 		cardContainerEl.appendChild(cardImageEl);
 		// It's possible to add a title on the image. Use: <span class="card-title">Card Title</span> in the innerHTML after the img.
 
-		// var cardStacked = document.createElement("div");
-		// cardStacked.setAttribute("class", "card-stacked");
-		// cardContainerEl.appendChild(cardStacked);
+		var cardStacked = document.createElement("div");
+		cardStacked.setAttribute("class", "card-stacked");
+		cardContainerEl.appendChild(cardStacked);
 
 		var cardContentEl = document.createElement("div");
 		cardContentEl.setAttribute("class", "card-content");
 		cardContentEl.innerHTML = ("<h6>" + title + "</h6>");			// "<p>" +  + "</p>"
-		cardContainerEl.appendChild(cardContentEl);
+		cardStacked.appendChild(cardContentEl);
 
 		var cardActionEl = document.createElement("div");
 		cardActionEl.setAttribute("class", "card-action");
 		cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/"); //+ tm.results[i].id + "-" + tm.results[i].title + "' target='_blank'>" + tm.results[i].title + "</a>");
-		cardContainerEl.appendChild(cardActionEl);
+		cardStacked.appendChild(cardActionEl);
 
 		update.append(cardEl);
 	// }
