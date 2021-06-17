@@ -31,6 +31,29 @@ body {
     color: var(--grey-lighten-2);
 }
 
+h5 {
+  font-family: 'Roboto', sans-serif;
+  color: var(--grey-lighten-2);
+}
+
+/* a {
+  color: var(--yellow-darken-3);
+} */
+
+.horizontal {
+  background-color: var(--grey-darken-4);
+}
+
+.card-image img{
+  width: auto;
+  height: 200px;
+  object-fit:cover;
+  }
+
+  ul.list-group {
+    min-height: 215px;
+    background-color: var(--indigo-darken-4);
+  }
 
 /* .card-horizontal {
   max-height: 100px;

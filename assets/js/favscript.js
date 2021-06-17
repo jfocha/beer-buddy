@@ -1,6 +1,6 @@
 
 
-var update = document.querySelector("#text");
+var update = document.querySelector("#favorites1");
 var submitInput = document.querySelector("#search")
 
 // fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb")
@@ -26,11 +26,11 @@ var submitInput = document.querySelector("#search")
 
 // var cardEl = document.createElement("div");
 // update.append(cardEl)
-var makeCardEl = function (image, title) {
+var makeCardEl = function (movieData) {
 	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 	// for (let i = 0; i < 6; i++) {
 		var cardEl = document.createElement("div");
-		cardEl.classList.add("col", "s3", "m4");
+		cardEl.classList.add("col", "s12", "m12", "list-group-item");
 
 		var cardContainerEl = document.createElement("div")
 		cardContainerEl.setAttribute("class", "card horizontal");
@@ -38,23 +38,23 @@ var makeCardEl = function (image, title) {
 
 		var cardImageEl = document.createElement("div");
 		cardImageEl.setAttribute("class", "card-image");
-		cardImageEl.innerHTML = "<img src='http://image.tmdb.org/t/p/w200" + image + "'></img>"; //"; // + tm.results[i].poster_path + "'></img>";
+		cardImageEl.innerHTML = "<img src='http://image.tmdb.org/t/p/w300" + movieData.results[0].poster_path + "'></img>"; //image + "'></img>"; //"; //
 		cardContainerEl.appendChild(cardImageEl);
 		// It's possible to add a title on the image. Use: <span class="card-title">Card Title</span> in the innerHTML after the img.
 
-		// var cardStacked = document.createElement("div");
-		// cardStacked.setAttribute("class", "card-stacked");
-		// cardContainerEl.appendChild(cardStacked);
+		var cardStacked = document.createElement("div");
+		cardStacked.setAttribute("class", "card-stacked");
+		cardContainerEl.appendChild(cardStacked);
 
 		var cardContentEl = document.createElement("div");
 		cardContentEl.setAttribute("class", "card-content");
-		cardContentEl.innerHTML = ("<h6>" + title + "</h6>");			// "<p>" +  + "</p>"
-		cardContainerEl.appendChild(cardContentEl);
+		cardContentEl.innerHTML = ("<h5>" + movieData.results[0].title + "</h5>");			// "<p>" +  + "</p>"
+		cardStacked.appendChild(cardContentEl);
 
 		var cardActionEl = document.createElement("div");
 		cardActionEl.setAttribute("class", "card-action");
-		cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/"); //+ tm.results[i].id + "-" + tm.results[i].title + "' target='_blank'>" + tm.results[i].title + "</a>");
-		cardContainerEl.appendChild(cardActionEl);
+		cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/" + movieData.results[0].id + "-" + movieData.results[0].title + "' target='_blank'>" + movieData.results[0].title + "</a>");
+		cardStacked.appendChild(cardActionEl);
 
 		update.append(cardEl);
 	// }
@@ -70,7 +70,7 @@ function myFunction(event) {
 	$.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function(json) {
 		if (json != "Nothing found."){                 
 console.log(json);
-makeCardEl(json.results[0].poster_path, json.results[0].title)
+makeCardEl(json)
 		}
 	   });
 
