@@ -1,6 +1,20 @@
+const fill = document.querySelector('.fill');
+const box = document.querySelectorAll('.empty')
 
+//Fill Listeners
+fill.addEventListener('dragstart', dragStart());
+fill.addEventListener('dragend', dragEnd());
 
-var update = document.querySelector("#text");
+//Drag Funtions
+function dragStart() {
+    console.log('start');
+}
+
+function dragEnd() {
+    console.log('end')
+}
+
+var update = document.querySelector("#list-toDo");
 
 // fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb")
 // 	.then(response => {

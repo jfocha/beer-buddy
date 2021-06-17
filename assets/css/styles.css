@@ -1,3 +1,7 @@
+ul.list-group {
+  min-height: 130px;
+}
+
 :root {
     --grey-lighten-2: #e0e0e0;
     --grey-darken-4: #212121;
@@ -25,6 +29,30 @@ color: var(--grey-lighten-2);
 body {
   background: url(../images/CINEMA_SEATS.jpg) no-repeat center fixed;
   background-size: cover;
+}
+
+.fill {
+  background-attachment: fixed;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  top: 5px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.empty {
+  display: inline-block;
+  height: 160px;
+  width: 160px;
+  margin: 10px;
+  border: 4px saddlebrown;
+  background-color: whitesmoke;
+  margin-right: 30px;
+}
+
+h1 {
+  font-family: 'Staatliches', sans-serif;
 }
 
 .title {
