@@ -136,7 +136,7 @@ async function getMovies(url) {
 
 function showMovies(movies) {
     // pageEl.innerHTML = ''
-	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
+    // pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 
     movies.forEach((movie) => {
         // destructuring 
@@ -144,7 +144,7 @@ function showMovies(movies) {
 
 
         var cardContainerEl = document.createElement("div");
-        cardContainerEl.classList.add("col", "s12", "m2");
+        cardContainerEl.classList.add("col", "s12", "m3");
 
         var cardEl = document.createElement('div');
         cardEl.className = 'card';
@@ -216,8 +216,8 @@ form.addEventListener("submit", (event) => {
     var searchTerm = search.value;
 
     if (searchTerm && searchTerm !== '') {
-		pageEl.innerHTML = ''
-		pageEl.innerHTML = "<h2 class='title'>Your Results:</h2>"
+        pageEl.innerHTML = ''
+        pageEl.innerHTML = "<h2 class='title'>Your Results:</h2>"
         getMovies(SEARCH_API + searchTerm);
         search.value = '';
 
