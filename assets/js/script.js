@@ -144,7 +144,7 @@ function showMovies(movies) {
 
 
         var cardContainerEl = document.createElement("div");
-        cardContainerEl.classList.add("col", "s12", "m3");
+        cardContainerEl.classList.add("col", "s12", "m2");
 
         var cardEl = document.createElement('div');
         cardEl.className = 'card';
@@ -155,7 +155,11 @@ function showMovies(movies) {
         cardEl.appendChild(cardImageContainerEl);
 
         var imgEl = document.createElement('img');
-        imgEl.src = IMG_PATH + poster_path;
+        if (!poster_path) {   
+            imgEl.src = "./assets/images/movie-not-found.jpg";
+        } else {
+            imgEl.src = IMG_PATH + poster_path;
+        }
         // var spanEl = document.createElement('span');
         // spanEl.className = 'card-title';
         // spanEl.textContent = title;

@@ -30,7 +30,7 @@ var makeCardEl = function (movieData) {
 	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 	// for (let i = 0; i < 6; i++) {
 		var cardEl = document.createElement("div");
-		cardEl.classList.add("col", "s12", "m12", "list-group-item");
+		cardEl.classList.add("col", "s12", "m12", "list-group-item", "hoverable");
 
 		var cardContainerEl = document.createElement("div")
 		cardContainerEl.setAttribute("class", "card horizontal");

@@ -6,9 +6,9 @@
     --grey-lighten-5: #fafafa;
 }
 
-.new-container {
+/* .container {
     margin: 0 150px;
-}
+} */
 
 
 /* font-family: 'Josefin Sans', sans-serif;  wght@600
@@ -62,8 +62,12 @@ h5 {
 
 /* styling for the Favorites Page */
 
-.horizontal {
+.card {
     background-color: var(--grey-darken-4);
+}
+
+.card p {
+  color: var(--grey-lighten-2);
 }
 
 .card-content {
@@ -73,6 +77,12 @@ h5 {
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+    
+}
+
+.card-action {
+  display: block;
+  width: 100%;
 }
 
 
