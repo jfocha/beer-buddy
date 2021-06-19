@@ -1,4 +1,5 @@
-pageEl = document.querySelector("#page");
+var pageEl = document.querySelector("#page");
+var newReleases = [];
 
 // fetch movie info from omdb
 fetch("https://www.omdbapi.com/?i=tt3896198&apikey=68149114")
@@ -130,17 +131,22 @@ async function getMovies(url) {
     const res = await fetch(url);
     const data = await res.json();
 
+newReleases = data.results;
+
     showMovies(data.results)
     console.log(data.results)
 }
 
 function showMovies(movies) {
     // pageEl.innerHTML = ''
-    // pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
+    // pageEl.innerHTML =  switch to the correct container
 
-    movies.forEach((movie) => {
+    movies.forEach((movie, index) => {
+        // if(index % 6 === 0){
+
+        // }
         // destructuring 
-        var { title, poster_path, overview } = movie;
+        var { title, poster_path, overview, id} = movie;
 
 
         var cardContainerEl = document.createElement("div");
@@ -174,8 +180,9 @@ function showMovies(movies) {
         // cardImageContainerEl.appendChild(spanEl);
 
         var cardActionEl = document.createElement("div");
-        cardActionEl.setAttribute("class", "card-action");
-        cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/" + title + "' target='_blank'>" + title + "</a>"); //need to search by movie id, not title
+        //cardActionEl.setAttribute("class", "card-action");
+        cardActionEl.classList.add("card-action", "truncate"); 
+        cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/" + id + "' target='_blank'>" + title + "</a>"); //need to search by movie id, not title
         cardEl.appendChild(cardActionEl);
 
 
