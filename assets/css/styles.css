@@ -119,7 +119,8 @@ ul.list-group {
 /* styling for the map page */
 
 #map {
-    height: 80vh;
+    height: 70vh;
+    width: 100%;
     /* position: absolute;
   top: 200;
   bottom: 200;
