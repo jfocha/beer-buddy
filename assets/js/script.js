@@ -236,3 +236,15 @@ form.addEventListener("submit", (event) => {
         window.location.reload();
     }
 })
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.carousel');
+//     var instances = M.Carousel.init(elems, options);
+//   });
+
+// $(document).ready(function(){
+//     $('.carousel').carousel();
+//   });
+
+
+// To Do: https://materializecss.com/carousel.html

@@ -1,6 +1,6 @@
 
 
-var update = document.querySelector("#favorites1");
+var update = document.querySelector("#consider");
 var submitInput = document.querySelector("#search")
 
 // fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb")
@@ -38,7 +38,7 @@ var makeCardEl = function (movieData) {
 
 		var cardImageEl = document.createElement("div");
 		cardImageEl.setAttribute("class", "card-image");
-		cardImageEl.innerHTML = "<img src='http://image.tmdb.org/t/p/w300" + movieData.results[0].poster_path + "'></img>"; //image + "'></img>"; //"; //
+		cardImageEl.innerHTML = "<img src='http://image.tmdb.org/t/p/w200" + movieData.results[0].poster_path + "'></img>"; //image + "'></img>"; //"; //
 		cardContainerEl.appendChild(cardImageEl);
 		// It's possible to add a title on the image. Use: <span class="card-title">Card Title</span> in the innerHTML after the img.
 
