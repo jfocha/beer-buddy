@@ -105,8 +105,8 @@ h4 {
 /* This controls the size of the poster image */
 
 .card img {
-    width: 200px;
-    height: auto;
+    width: auto;
+    height: 200px;
     object-fit: cover;
 }
 

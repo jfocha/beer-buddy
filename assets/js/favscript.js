@@ -1,81 +1,97 @@
-
-
-var update = document.querySelector("#consider");
 var submitInput = document.querySelector("#search")
 
-// fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb")
-// 	.then(response => {
-// 		return response.json();
-// 	}).then(data => {
-// 		console.log(data);
-// 		makeCardEl(data, true);
+var loadTasks = function () {
+	tasks = JSON.parse(localStorage.getItem("tasks"));
 
-// 	})
-// 	.catch(err => {
-// 		console.error(err);
-// 	});
+	// if nothing in localStorage, create a new object to track all task status arrays
+	if (!tasks) {
+		tasks = {
+			0: [],
+			1: [],
+			2: [],
+			3: [],
+			4: [],
+			5: [],
+			6: [],
+			7: [],
+			8: [],
+			9: []
+		};
+	}
 
+	// loop over object properties
+	$.each(tasks, function (list, arr) {
+		// then loop over sub-array
+		arr.forEach(function (task) {
+			console.log(list);
+			makeCardEl(task.pic, task.link, task.text, list); // 3rd was list...
+		});
+	});
+};
 
-// var film ="annabelle";
-//     $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function(json) {
-//         			 if (json != "Nothing found."){                 
-//         console.log(json);
-//                      }
-//                     });
+var makeCardEl = function (poster, movieId, movieTitle, favSpot) {
 
+	var cardEl = document.createElement("div");
+	cardEl.classList.add("col", "s12", "m12", "list-group-item", "hoverable");
 
-// var cardEl = document.createElement("div");
-// update.append(cardEl)
-var makeCardEl = function (movieData) {
-	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
-	// for (let i = 0; i < 6; i++) {
-		var cardEl = document.createElement("div");
-		cardEl.classList.add("col", "s12", "m12", "list-group-item", "hoverable");
+	var cardContainerEl = document.createElement("div")
+	cardContainerEl.setAttribute("class", "card horizontal");
+	cardEl.appendChild(cardContainerEl);
 
-		var cardContainerEl = document.createElement("div")
-		cardContainerEl.setAttribute("class", "card horizontal");
-		cardEl.appendChild(cardContainerEl);
+	var cardImageEl = document.createElement("div");
+	cardImageEl.setAttribute("class", "card-image");
+	cardImageEl.innerHTML = "<img src='" + poster + "'></img>";
+	cardContainerEl.appendChild(cardImageEl);
 
-		var cardImageEl = document.createElement("div");
-		cardImageEl.setAttribute("class", "card-image");
-		cardImageEl.innerHTML = "<img src='http://image.tmdb.org/t/p/w200" + movieData.results[0].poster_path + "'></img>"; //image + "'></img>"; //"; //
-		cardContainerEl.appendChild(cardImageEl);
-		// It's possible to add a title on the image. Use: <span class="card-title">Card Title</span> in the innerHTML after the img.
+	var cardStacked = document.createElement("div");
+	cardStacked.setAttribute("class", "card-stacked");
+	cardContainerEl.appendChild(cardStacked);
 
-		var cardStacked = document.createElement("div");
-		cardStacked.setAttribute("class", "card-stacked");
-		cardContainerEl.appendChild(cardStacked);
+	var cardContentEl = document.createElement("div");
+	cardContentEl.setAttribute("class", "card-contents");
+	cardContentEl.innerHTML = ("<h5>" + movieTitle + "</h5>");
+	cardStacked.appendChild(cardContentEl);
 
-		var cardContentEl = document.createElement("div");
-		cardContentEl.setAttribute("class", "card-contents"); //supposed to be card-content
-		cardContentEl.innerHTML = ("<h5>" + movieData.results[0].title + "</h5>");			// "<p>" +  + "</p>"
-		cardStacked.appendChild(cardContentEl);
+	var cardActionEl = document.createElement("div");
+	cardActionEl.setAttribute("class", "card-action");
+	cardActionEl.innerHTML = ("<a href='" + movieId + "' target='_blank'>" + movieTitle + "</a>");
+	cardStacked.appendChild(cardActionEl);
 
-		var cardActionEl = document.createElement("div");
-		cardActionEl.setAttribute("class", "card-action");
-		cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/" + movieData.results[0].id + "-" + movieData.results[0].title + "' target='_blank'>" + movieData.results[0].title + "</a>");
-		cardStacked.appendChild(cardActionEl);
+	// append to ul list on the page
+	if (favSpot === "#consider") {
+		$(favSpot).append(cardEl);
+	} else {
 
-		update.append(cardEl);
-	// }
+		$("#favorites-" + favSpot).append(cardEl);
+	}
+
 }
 
-document.getElementById("form").addEventListener("submit", myFunction);
+document.getElementById("form").addEventListener("submit", searchForFavorite);
 
-function myFunction(event) {
+function searchForFavorite(event) {
 	event.preventDefault();
 	var film = submitInput.value;
 	submitInput.value = '';
 
 
-	$.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function(json) {
-		if (json != "Nothing found."){                 
-console.log(json);
-makeCardEl(json)
-		}
-	   });
+	$.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function (json) {
+		if (json != "Nothing found.") {
+			console.log(json);
 
-	//makeCardEl(image, title)  // find image and title from fetch
+			var posterImage = json.results[0].poster_path;
+			var posterImageSrc = "http://image.tmdb.org/t/p/w200" + posterImage;
+
+			var searchedId = json.results[0].id;
+			var idLink = "https://www.themoviedb.org/movie/" + searchedId;
+
+			var title = json.results[0].title;
+
+			makeCardEl(posterImageSrc, idLink, title, "#consider")
+		}
+	});
+
+
 
 
 }
@@ -87,50 +103,59 @@ $(".card .list-group").sortable({
 	scroll: false,
 	tolerance: "pointer",
 	helper: "clone",
-	activate: function(event, ui) {
-	  $(this).addClass("dropover");
-	  $(".bottom-trash").addClass("bottom-trash-drag");
+	activate: function (event, ui) {
+		$(this).addClass("dropover");
+		$(".bottom-trash").addClass("bottom-trash-drag");
 	},
-	deactivate: function(event, ui) {
-	  $(this).removeClass("dropover");
-	  $(".bottom-trash").removeClass("bottom-trash-drag");
+	deactivate: function (event, ui) {
+		$(this).removeClass("dropover");
+		$(".bottom-trash").removeClass("bottom-trash-drag");
 	},
-	over: function(event) {
-	  $(event.target).addClass("dropover-active");
+	over: function (event) {
+		$(event.target).addClass("dropover-active");
 	},
-	out: function(event) {
-	  $(event.target).removeClass("dropover-active");
+	out: function (event) {
+		$(event.target).removeClass("dropover-active");
 	},
-	update: function() {
-	  var tempArr = [];
-  
-	  // loop over current set of children in sortable list
-	  $(this)
-		.children()
-		.each(function() {
-		  // save values in temp array
-		  tempArr.push({
-			text: $(this)
-			  .find("p")
-			  .text()
-			  .trim(),
-			date: $(this)
-			  .find("span")
-			  .text()
-			  .trim()
-		  });
-		});
-  
-	  // trim down list's ID to match object property
-	  var arrName = $(this)
-		.attr("id")
-		.replace("list-", "");
-  
-	  // update array on tasks object and save
-	  tasks[arrName] = tempArr;
-	  saveTasks();
+	update: function () {
+		var tempArr = [];
+
+		// loop over current set of children in sortable list
+		$(this)
+			.children()
+			.each(function () {
+				// save values in temp array
+				tempArr.push({
+					pic: $(this)
+						.find("img")
+						.attr('src')
+						.trim(),
+					text: $(this)
+						.find("h5")
+						.text()
+						.trim(),
+					link: $(this)
+						.find("a")
+						.attr('href')
+						.trim()
+				});
+			});
+
+		// trim down list's ID to match object property
+		var arrName = $(this)
+			.attr("id")
+			.replace("favorites-", "");
+
+		// update array on tasks object and save
+		tasks[arrName] = tempArr;
+		saveTasks();
 	}
-  });
+});
+
+var saveTasks = function () {
+	localStorage.setItem("tasks", JSON.stringify(tasks));
+};
 
 
+loadTasks();
 
