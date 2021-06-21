@@ -24,7 +24,7 @@ var loadTasks = function () {
 		// then loop over sub-array
 		arr.forEach(function (task) {
 			console.log(list);
-			makeCardEl(task.pic, task.link, task.text, list); // 3rd was list...
+			makeCardEl(task.pic, task.link, task.text, list);
 		});
 	});
 };
@@ -61,7 +61,6 @@ var makeCardEl = function (poster, movieId, movieTitle, favSpot) {
 	if (favSpot === "#consider") {
 		$(favSpot).append(cardEl);
 	} else {
-
 		$("#favorites-" + favSpot).append(cardEl);
 	}
 
@@ -80,7 +79,7 @@ function searchForFavorite(event) {
 			console.log(json);
 
 			var posterImage = json.results[0].poster_path;
-			var posterImageSrc = "http://image.tmdb.org/t/p/w200" + posterImage;
+			var posterImageSrc = "https://image.tmdb.org/t/p/w200" + posterImage;
 
 			var searchedId = json.results[0].id;
 			var idLink = "https://www.themoviedb.org/movie/" + searchedId;
@@ -159,3 +158,4 @@ var saveTasks = function () {
 
 loadTasks();
 
+// To Do: Add trash can.

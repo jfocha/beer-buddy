@@ -74,7 +74,7 @@ fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca
 // 	return results
 // };
 
-var makeCardEl = function(tm, ob) {
+var makeCardEl = function (tm, ob) {
     // pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
     // for (let i = 0; i < 6; i++) {
     //     var cardEl = document.createElement("div");
@@ -104,7 +104,7 @@ var makeCardEl = function(tm, ob) {
     // }
 }
 
-var searchMovie = function(tm, ob) {
+var searchMovie = function (tm, ob) {
     // when submit button is entered, clear the page and display the searched movie.
     // get show times
     // ask to add to favorites
@@ -114,7 +114,7 @@ var searchMovie = function(tm, ob) {
 // var pageEl=("");
 // add drag and drop cards
 // add search function => makes cards
-var favorites = function() {
+var favorites = function () {
 
 };
 
@@ -131,7 +131,7 @@ async function getMovies(url) {
     const res = await fetch(url);
     const data = await res.json();
 
-newReleases = data.results;
+    newReleases = data.results;
 
     showMovies(data.results)
     console.log(data.results)
@@ -146,7 +146,7 @@ function showMovies(movies) {
 
         // }
         // destructuring 
-        var { title, poster_path, overview, id} = movie;
+        var { title, poster_path, overview, id } = movie;
 
 
         var cardContainerEl = document.createElement("div");
@@ -161,7 +161,7 @@ function showMovies(movies) {
         cardEl.appendChild(cardImageContainerEl);
 
         var imgEl = document.createElement('img');
-        if (!poster_path) {   
+        if (!poster_path) {
             imgEl.src = "./assets/images/movie-not-found.jpg";
         } else {
             imgEl.src = IMG_PATH + poster_path;
@@ -181,7 +181,7 @@ function showMovies(movies) {
 
         var cardActionEl = document.createElement("div");
         //cardActionEl.setAttribute("class", "card-action");
-        cardActionEl.classList.add("card-action", "truncate"); 
+        cardActionEl.classList.add("card-action", "truncate");
         cardActionEl.innerHTML = ("<a href='https://www.themoviedb.org/movie/" + id + "' target='_blank'>" + title + "</a>"); //need to search by movie id, not title
         cardEl.appendChild(cardActionEl);
 
