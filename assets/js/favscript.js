@@ -1,5 +1,5 @@
 const fill = document.querySelector('.fill');
-const box = document.querySelectorAll('.empty')
+const box = document.querySelectorAll('.empty');
 
 //Fill Listeners
 fill.addEventListener('dragstart', dragStart());
@@ -15,7 +15,7 @@ function dragEnd() {
 }
 
 var update = document.querySelector("#list-toDo");
-var update = document.querySelector("#text");
+// var update = document.querySelector("#text");
 var submitInput = document.querySelector("#search")
 
 // fetch("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb")
@@ -45,7 +45,7 @@ var makeCardEl = function (image, title) {
 	// pageEl.innerHTML = "<h2 class='title'>New Releases</h2>"
 	// for (let i = 0; i < 6; i++) {
 		var cardEl = document.createElement("div");
-		cardEl.classList.add("col", "s3", "m4");
+		cardEl.classList.add("col", "s3",);
 
 		var cardContainerEl = document.createElement("div")
 		cardContainerEl.setAttribute("class", "card horizontal");
@@ -53,6 +53,7 @@ var makeCardEl = function (image, title) {
 
 		var cardImageEl = document.createElement("div");
 		cardImageEl.setAttribute("class", "card-image");
+        console.log(image);
 		cardImageEl.innerHTML = "<img src='http://image.tmdb.org/t/p/w200" + image + "'></img>"; //"; // + tm.results[i].poster_path + "'></img>";
 		cardContainerEl.appendChild(cardImageEl);
 		// It's possible to add a title on the image. Use: <span class="card-title">Card Title</span> in the innerHTML after the img.
@@ -84,7 +85,8 @@ function myFunction(event) {
 
 	$.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + film + "&callback=?", function(json) {
 		if (json != "Nothing found."){                 
-console.log(json);
+console.log(json.results[0] + "fetch request");
+console.log(json.results[0].poster_path);
 makeCardEl(json.results[0].poster_path, json.results[0].title)
 		}
 	   });
